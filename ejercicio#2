@@ -1,0 +1,50 @@
+Crear un componente en React que convierta temperaturas en grados Celsius a Fahrenheit y viceversa es un problema común. 
+Podemos usar el estado de React para mantener los valores de temperatura en ambas escalas y actualizarlos automáticamente a medida que se ingresan nuevas temperaturas.
+
+
+
+jsx
+import React, { useState } from "react";
+
+function TemperatureConverter() {
+  const [celsius, setCelsius] = useState(0);
+  const [fahrenheit, setFahrenheit] = useState(32);
+
+  function handleCelsiusChange(e) {
+    const value = e.target.value;
+    setCelsius(value);
+    setFahrenheit((value * 9) / 5 + 32);
+  }
+
+  function handleFahrenheitChange(e) {
+    const value = e.target.value;
+    setFahrenheit(value);
+    setCelsius(((value - 32) * 5) / 9);
+  }
+
+  return (
+    <div>
+      <label>
+        Celsius:
+        <input type="number" value={celsius} onChange={handleCelsiusChange} />
+      </label>
+      <br />
+      <label>
+        Fahrenheit:
+        <input type="number" value={fahrenheit} onChange={handleFahrenheitChange} />
+      </label>
+    </div>
+  );
+}
+
+export default TemperatureConverter;
+
+
+En este ejemplo, usamos el hook `useState` para mantener el estado de las temperaturas en ambas escalas. Luego, definimos dos funciones de manejo de eventos 
+(`handleCelsiusChange` y `handleFahrenheitChange`) que se llaman cada vez que se cambia el valor de una de las entradas de temperatura.
+
+En `handleCelsiusChange`, actualizamos el valor de la temperatura en grados Celsius y calculamos el valor equivalente en grados Fahrenheit. 
+En `handleFahrenheitChange`, hacemos lo contrario: actualizamos el valor de la temperatura en grados Fahrenheit y calculamos el valor equivalente en grados Celsius.
+
+Finalmente, renderizamos dos entradas de temperatura, una para Celsius y otra para Fahrenheit, y les asignamos los valores y funciones de manejo de eventos correspondientes. 
+Al cambiar el valor de una entrada, el valor de la otra entrada se actualizará automáticamente.
