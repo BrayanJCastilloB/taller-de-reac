@@ -1,0 +1,62 @@
+
+
+
+import React, { useState } from "react";
+
+function ListaTareas() {
+  const [tareas, setTareas] = useState([]);
+  const [nuevaTarea, setNuevaTarea] = useState("");
+
+  const agregarTarea = () => {
+    if (nuevaTarea !== "") {
+      setTareas([...tareas, nuevaTarea]);
+      setNuevaTarea("");
+    }
+  };
+
+  const eliminarTarea = (index) => {
+    const nuevasTareas = [...tareas];
+    nuevasTareas.splice(index, 1);
+    setTareas(nuevasTareas);
+  };
+
+  return (
+    <div>
+      <h1>Lista de Tareas</h1>
+      <div>
+        <input
+          type="text"
+          placeholder="Agregar Tarea"
+          value={nuevaTarea}
+          onChange={(e) => setNuevaTarea(e.target.value)}
+        />
+        <button onClick={agregarTarea}>Agregar</button>
+      </div>
+      <ul>
+        {tareas.map((tarea, index) => (
+          <li key={index}>
+            {tarea}
+            <button onClick={() => eliminarTarea(index)}>Eliminar</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default ListaTareas;
+
+
+Explicación del código:
+
+1. Importamos React y useState desde la librería de React.
+2. Creamos el componente de ListaTareas con la función que lo define.
+3. Utilizamos el hook useState para crear dos variables de estado: tareas y nuevaTarea.
+4. Creamos la función agregarTarea que agrega una tarea nueva a la lista de tareas y limpia el campo de entrada para agregar más tareas.
+5. Creamos la función eliminarTarea que elimina una tarea de la lista, a partir del índice pasado como parámetro.
+6. Dentro del componente, creamos un formulario con un campo de entrada para agregar tareas y un botón para hacerlo.
+7. Creamos una lista no ordenada que va a mostrar todas las tareas agregadas, por medio del método map().
+8. Cada elemento de la lista incluye la tarea misma y un botón para eliminarla.
+9. Exportamos el componente.
+
+Así, hemos creado un componente de React que permite al usuario agregar y eliminar elementos de una lista de tareas, a partir de un campo de entrada y botones correspondientes.
