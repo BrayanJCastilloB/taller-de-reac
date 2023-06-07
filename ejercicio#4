@@ -1,0 +1,75 @@
+
+
+1. Primero, instala las dependencias necesarias:
+
+
+npm install --save styled-components
+
+
+2. Crea un nuevo archivo llamado `ImageGallery.js` y pega el siguiente código:
+
+javascript
+import React from 'react';
+import styled from 'styled-components';
+
+const GalleryContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+`;
+
+const Image = styled.img`
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const images = [
+  'https://via.placeholder.com/300x200',
+  'https://via.placeholder.com/300x200',
+  'https://via.placeholder.com/300x200',
+  'https://via.placeholder.com/300x200',
+  'https://via.placeholder.com/300x200',
+  'https://via.placeholder.com/300x200',
+];
+
+const ImageGallery = () => {
+  return (
+    <GalleryContainer>
+      {images.map((image, index) => (
+        <Image key={index} src={image} alt={`Imagen ${index + 1}`} />
+      ))}
+    </GalleryContainer>
+  );
+};
+
+export default ImageGallery;
+
+
+El componente utiliza styled-components para aplicar estilos a la galería y las imágenes individuales. 
+Cuando el usuario pasa el cursor sobre una imagen, la imagen se agranda ligeramente, proporcionando una experiencia interactiva.
+
+3. Ahora, en tu componente principal, importa el componente `ImageGallery` y utilízalo en tu aplicación:
+
+javascript
+import React from 'react';
+import ImageGallery from './ImageGallery';
+
+const App = () => {
+  return (
+    <div>
+      <h1>Galería de imágenes</h1>
+      <ImageGallery />
+    </div>
+  );
+};
+
+export default App;
