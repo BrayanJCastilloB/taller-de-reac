@@ -1,0 +1,31 @@
+Primero, creamos un componente `Counter` que mostrará el valor actual del contador y los botones para incrementar y decrementar su valor. Utilizaremos el estado de React para realizar el seguimiento del valor del contador y actualizarlo cuando se haga clic en los botones.
+
+jsx
+import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const incrementCount = () => {
+    setCount(count + 1);
+  };
+
+  const decrementCount = () => {
+    setCount(count - 1);
+  };
+
+  return (
+    <div>
+      <h1>Contador: {count}</h1>
+      <button onClick={incrementCount}>Incrementar</button>
+      <button onClick={decrementCount}>Decrementar</button>
+    </div>
+  );
+}
+
+export default Counter;
+
+
+En este componente, utilizamos el hook `useState` para crear una variable de estado `count` con un valor inicial de `0`. Luego, definimos dos funciones `incrementCount` y `decrementCount` que actualizan el valor del estado `count` mediante la función `setCount`.
+
+Finalmente, renderizamos el valor actual de `count` y dos botones que llaman a las funciones `incrementCount` y `decrementCount` respectivamente al hacer clic.
